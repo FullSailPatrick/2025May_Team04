@@ -12,32 +12,28 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Collect commit data
+      - name: Get commit data
         id: get_data
         run: |
           echo "Repo=${{ github.repository }}" >> $GITHUB_ENV
           echo "Branch=${GITHUB_REF##*/}" >> $GITHUB_ENV
           echo "Author=${{ github.event.pusher.name }}" >> $GITHUB_ENV
-          echo "Timestamp=$(date -u '+%A %m-%d-%Y %I:%M %p EST')" >> $GITHUB_ENV
-
-          COMMIT_SHA=$(git rev-parse --short HEAD)
-          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
-          echo "Commit=${COMMIT_SHA} ${COMMIT_MSG}" >> $GITHUB_ENV
-
-          LINK="https://github.com/${{ github.repository }}/commit/${COMMIT_SHA}"
-          echo "Link=${LINK}" >> $GITHUB_ENV
+          echo "Timestamp=$(TZ=America/New_York date '+%A %m-%d-%Y %I:%M %p %Z')" >> $GITHUB_ENV
+          echo "CommitHash=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
+          echo "CommitMsg=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+          echo "Link=https://github.com/${{ github.repository }}/commit/${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Post to Discord
         env:
           WEBHOOK: https://discord.com/api/webhooks/1370296672172900422/knvk9vkaDhzg0us4td5mXdFz7D5yhj15xTSeZzfbwSSTtGUi0wy855BbbLbmZ6NGDmBR
         run: |
-          MESSAGE="✅ GitHub push detected
-Repo: $Repo
-Branch: $Branch
-Author: $Author
-Time: $Timestamp
-Commit: $Commit
-Link: $Link"
+          echo ":white_check_mark: GitHub push detected" > message.txt
+          echo "Repo: $Repo" >> message.txt
+          echo "Branch: $Branch" >> message.txt
+          echo "Author: $Author" >> message.txt
+          echo "Time: $Timestamp" >> message.txt
+          echo "Commit: $CommitHash $CommitMsg" >> message.txt
+          echo "Link: $Link" >> message.txt
 
-          PAYLOAD=$(jq -Rs --arg content "$MESSAGE" '{content: $content}' <<< "")
+          PAYLOAD=$(jq -Rs '{content: .}' < message.txt)
           curl -s -H "Content-Type: application/json" -d "$PAYLOAD" "$WEBHOOK"
