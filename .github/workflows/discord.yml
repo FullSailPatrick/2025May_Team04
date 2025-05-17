@@ -25,7 +25,7 @@ jobs:
 
       - name: Post to Discord
         env:
-          WEBHOOK: https://discord.com/api/webhooks/1370296672172900422/knvk9vkaDhzg0us4td5mXdFz7D5yhj15xTSeZzfbwSSTtGUi0wy855BbbLbmZ6NGDmBR
+         WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           echo ":white_check_mark: GitHub push detected" > message.txt
           echo "Repo: $Repo" >> message.txt
