@@ -1,24 +1,25 @@
 package com.example.quickphrase;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        Button createAccountButton = findViewById(R.id.createAccountButton);
+        Button loginButton = findViewById(R.id.loginButton);
+
+        createAccountButton.setOnClickListener(v ->
+                Toast.makeText(this, "Create Account Clicked", Toast.LENGTH_SHORT).show()
+        );
+
+        loginButton.setOnClickListener(v ->
+                Toast.makeText(this, "Log In Clicked", Toast.LENGTH_SHORT).show()
+        );
     }
 }
