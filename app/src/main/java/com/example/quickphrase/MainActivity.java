@@ -1,25 +1,13 @@
 package com.example.quickphrase;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button createAccountButton = findViewById(R.id.createAccountButton);
-        Button loginButton = findViewById(R.id.loginButton);
-
-        createAccountButton.setOnClickListener(v ->
-                Toast.makeText(this, "Create Account Clicked", Toast.LENGTH_SHORT).show()
-        );
-
-        loginButton.setOnClickListener(v ->
-                Toast.makeText(this, "Log In Clicked", Toast.LENGTH_SHORT).show()
-        );
+        // 🔁 THIS MUST point to the main menu layout
+        setContentView(R.layout.activity_main_menu);
     }
 }
