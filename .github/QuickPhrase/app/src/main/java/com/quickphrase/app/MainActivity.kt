@@ -8,7 +8,7 @@ import androidx.compose.material3.Surface
 import com.quickphrase.app.model.MultilingualPhrase
 import com.quickphrase.app.model.PhrasePack
 import com.quickphrase.app.ui.TranslatedPhraseScreen
-import com.quickphrase.app.ui.theme.QuickPhraseTheme
+import com.quickphrase.app.ui.theme.QuickPhraseTheme // or whatever your theme file is named
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
