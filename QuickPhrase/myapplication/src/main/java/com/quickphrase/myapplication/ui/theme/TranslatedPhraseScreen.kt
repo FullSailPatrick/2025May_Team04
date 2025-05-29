@@ -64,7 +64,7 @@ fun TranslatedPhraseScreen(
                 ) {
                     Text(
                         text = translation,
-                        modifier = Modifier.padding(16.dp),
+                        modifier = Modifier.padding(2.dp),
                         color = Color.Black
                     )
                 }

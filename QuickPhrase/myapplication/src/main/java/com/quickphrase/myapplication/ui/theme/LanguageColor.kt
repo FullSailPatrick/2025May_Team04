@@ -1,7 +1,5 @@
 package com.quickphrase.myapplication.ui.theme
 
-
-
 import androidx.compose.ui.graphics.Color
 
 enum class LanguageColor(val displayName: String, val color: Color) {
