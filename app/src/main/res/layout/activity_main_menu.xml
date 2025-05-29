@@ -12,7 +12,7 @@
         android:minHeight="700dp"
         android:padding="24dp">
 
-        <!-- Header: Logo & Profile -->
+        <!-- Header: Logo & Profile + Favorites -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,23 +42,55 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
+            <!-- Profile & Favorites Side-by-Side -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="#CCCCCC"/>
-
-                <TextView
-                    android:text="Profile"
-                    android:textSize="12sp"
-                    android:textColor="#444444"
+                <!-- Profile -->
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="16dp">
+
+                    <ImageView
+                        android:id="@+id/profileIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="#CCCCCC"/>
+
+                    <TextView
+                        android:text="Profile"
+                        android:textSize="12sp"
+                        android:textColor="#444444"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Favorites -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/favoritesIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="#FFDD55" />
+
+                    <TextView
+                        android:text="Favorites"
+                        android:textSize="12sp"
+                        android:textColor="#444444"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
